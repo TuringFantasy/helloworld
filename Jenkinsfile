@@ -61,6 +61,7 @@ pipeline {
                     def macawPublishCmd = "${env.MACAW_SDK_HOME}/tools/macaw-publish-tools/bin/macawpublish"
                     echo "Generating a new docker image tag ${dockerImageTag}"
                     sh "export PYTHONIOENCODING=UTF-8; ${macawPublishCmd} service --tag ${dockerImageTag} ${serviceHome}"
+                    sh "export PYTHONIOENCODING=UTF-8; ${macawPublishCmd} webapp --name helloworld --version 1.0.0 --file  ${serviceHome}/webapp/target/helloworld.war"
                 }
             }
         }
