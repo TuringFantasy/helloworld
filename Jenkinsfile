@@ -102,6 +102,7 @@ pipeline {
             }
             steps {
                 dir('impl') {
+                    sh "sleep 60s"
                     sh "ant python-test"
                 }
             }
