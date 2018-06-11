@@ -30,7 +30,10 @@ class APIGateway(object):
         self.loginmethod    = kwargs.get('login-method',None)
         self.token          = None
         self.loggedinTime   = int(round(time.time()))
-        self.apiRestBaseUrl = "%s://%s:%d/%s" % (self.protocol, self.host, self.port, "api_gateway")
+        if self.host.find("http") == -1:
+            self.apiRestBaseUrl = "%s://%s:%d/%s" % (self.protocol, self.host, self.port, "api_gateway")
+        else:
+            self.apiRestBaseUrl = "%s:%d/%s" % (self.host, self.port, "api_gateway")
         self.verify = kwargs.get('verify',False)
         self.debug_enabled  = False
         if not self.verify:
