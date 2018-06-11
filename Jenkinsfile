@@ -14,7 +14,7 @@ pipeline {
         booleanParam(name: 'ROLLING_UPDATE', defaultValue: true, description: 'Will this be a rolling update or a new cluster needs to be provisioned')
         booleanParam(name: 'SKIP_CERT_VERIFICATION', defaultValue: true, description: 'If set to true then any SSL certificate errors will be ignored. Typically, for self-signed certificates this param can be set to true')
         string(name: 'SERVICE_ID', defaultValue:'helloworld', description: 'The service id of the service in blueprint that needs to be provisioned')
-        string(name: 'RUN_PYTHON_TESTS', defaultValue: true, description: 'Run Python Tests Post Provisioning')
+        booleanParam(name: 'RUN_PYTHON_TESTS', defaultValue: true, description: 'Run Python Tests Post Provisioning')
     }
     stages {
         stage('Checkout Source') {
