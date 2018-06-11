@@ -122,7 +122,7 @@
     <target name="python-test" depends="check-python-tests-exist, copy-python-test-resources" description="Runs the python unit tests">
         <exec executable="/bin/sh">
             <arg value="-c" />
-            <arg value='PYTHONPATH="${target.dir}/python-tests" py.test --junit-xml="${test.reports.dir}"/TEST-Python.xml -s "${target.dir}/python-tests"' />
+            <arg value='PYTHONPATH="${target.dir}/python-tests" py.test --junit-xml="${test.reports.dir}/TEST-Python.xml" -s "${target.dir}/python-tests"' />
         </exec>        
     </target>
 
