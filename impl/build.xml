@@ -96,14 +96,13 @@
         <available file="${src.test.python.dir}" property="pythontests.exist"/>
     </target>
 
-    <target name="test-compile" depends="compile, check-tests-exist, check-python-tests-exist" description="Compiles the test source" if="${tests.exist}">
+    <target name="test-compile" depends="compile, check-tests-exist" description="Compiles the test source" if="${tests.exist}">
         <mkdir dir="${target.test.classes.dir}"/>
         <javac memoryMaximumSize="256m" srcdir="${src.test.java.dir}" destdir="${target.test.classes.dir}" fork="yes" source="1.8" debug="true" debuglevel="lines,vars,source">
             <classpath refid="test.classpath"/>
         </javac>
         <!-- Copy the test resources to the target dir-->
         <antcall target="copy-test-resources"/>
-        <antcall target="copy-python-test-resources"/>
     </target>
 
     <target name="copy-python-test-resources" depends="check-python-tests-exist" if="${pythontests.exist}">
@@ -118,6 +117,13 @@
         <copy todir="${target.test.classes.dir}" failonerror="false">
             <fileset dir="${src.test.resources.dir}"/>
         </copy>
+    </target>
+
+    <target name="python-test" depends="check-python-tests-exist, copy-python-test-resources" description="Runs the python unit tests">
+        <exec executable="/bin/sh">
+            <arg value="-c" />
+            <arg value='PYTHONPATH="${target.dir}/python-tests" py.test --junit-xml=${test.reports.dir}/TEST-Python.xml -s "${target.dir}/python-tests"' />
+        </exec>        
     </target>
 
     <!-- Runs tests prior to creating a dist -->
@@ -139,10 +145,6 @@
                 </fileset>
             </batchtest>
         </junit>
-        <exec executable="/bin/sh">
-            <arg value="-c" />
-            <arg value='PYTHONPATH="${target.dir}/python-tests" py.test --junit-xml=${test.reports.dir}/TEST-Python.xml -s "${target.dir}/python-tests"' />
-        </exec>        
         <junitreport todir="${test.reports.dir}">
             <fileset dir="${test.reports.dir}">
                 <include name="TEST-*.xml"/>
