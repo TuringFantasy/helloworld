@@ -25,9 +25,9 @@ class APIGateway(object):
         self.protocol       = kwargs.get('protocol','https')
         self.username       = kwargs.get('username',None)
         self.password       = kwargs.get('password',None)
-        self.access_key     = kwargs.get('access-key',None)
-        self.secret_key     = kwargs.get('secret-key',None)
-        self.loginmethod    = kwargs.get('login-method',None)
+        self.access_key     = kwargs.get('access_key',None)
+        self.secret_key     = kwargs.get('secret_key',None)
+        self.loginmethod    = kwargs.get('login_method',None)
         self.token          = None
         self.loggedinTime   = int(round(time.time()))
         if self.host.find("http") == -1:
@@ -51,9 +51,9 @@ class APIGateway(object):
             return True
         if kwargs.get('login-method',None) or self.loginmethod:
             logging.info("Access Key based login requested")
-            logininfo = {"access-key-id": kwargs.get('access-key') if kwargs.get('access-key',None) else self.access_key,
-                            "secret-key": kwargs.get('access-key') if kwargs.get('access-key',None) else self.secret_key,
-                            "login-method": kwargs.get('login-method') if kwargs.get('login-method',None) else self.loginmethod}
+            logininfo = {"access-key-id": kwargs.get('access_key') if kwargs.get('access_key',None) else self.access_key,
+                            "secret-key": kwargs.get('secret_key') if kwargs.get('secret_key',None) else self.secret_key,
+                            "login-method": kwargs.get('login_method') if kwargs.get('login_method',None) else self.loginmethod}
         else:
             logging.info("Username based login requested")
             logininfo = {"user": kwargs.get('username') if kwargs.get('username',None) else self.username,
