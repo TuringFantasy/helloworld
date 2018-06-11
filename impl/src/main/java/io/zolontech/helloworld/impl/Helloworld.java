@@ -17,6 +17,6 @@ public class Helloworld implements com.cfx.service.api.Service, io.zolontech.hel
 
   @Override
   public String sayHello() {
-    return new String("Hello, World from Pleasanton!");
+    return new String("Hello, World!");
   }
 }
