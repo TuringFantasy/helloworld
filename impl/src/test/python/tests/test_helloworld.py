@@ -14,7 +14,7 @@ class TestUM:
     def teardown(self):
 	self.apigateway.logout()
  
-    def test_numbers_5_6(self):
+    def test_number_1(self):
 	response = self.apigateway.Post(HELLO_WORLD_SERVICE+"sayHello", payload=None)
 	assert (response is not None), "Response is not received"
 	assert (response.json() == "Hello, World!"), "Not expected hello is received"
