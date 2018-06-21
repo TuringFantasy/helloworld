@@ -11,6 +11,13 @@
 					"output" : {
 						"type" : "string"
 					}
+				},
+				{
+					"name" : "getQuote",
+					"description" : "Returns the Quote",
+					"output" : {
+						"type" : "string"
+					}
 				}
 			],
 			"options" : {
