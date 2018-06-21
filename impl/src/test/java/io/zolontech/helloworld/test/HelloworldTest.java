@@ -12,6 +12,6 @@ public class HelloworldTest {
 		final Helloworld service = new Helloworld();
 		final String message = service.sayHello();
 		Assert.assertNotNull("Helloworld service returned a null message", message);
-		Assert.assertEquals("Unexpected hello-world message", "Hello, World!", message);
+		Assert.assertEquals("Unexpected hello-world message", "Honeybadger will win!", message);
 	}
 }
