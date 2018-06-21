@@ -22,6 +22,6 @@ public class Helloworld implements com.cfx.service.api.Service, io.zolontech.hel
 
   @Override
   public String getQuote() {
-    return new String("Honeybadger will win!");
+    return new String("Honey Badgers are going to win!");
   }
 }
